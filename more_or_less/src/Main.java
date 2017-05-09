@@ -4,21 +4,16 @@ public class Main {
 
     public static void play(int max) {
         Scanner input = new Scanner(System.in);
-        boolean playAgain = true;
-
-        while(playAgain) {
-            int number;
-            int maxGuess;
-            int minGuess;
-
+        boolean playAgain = true, found = false;
+        int number, maxGuess, minGuess, guess;
+        
+        while(playAgain==true) {
             maxGuess = max;
             number = (int)(Math.random() * max + 1);
             minGuess = 0;
 
-            boolean found = false;
-
-            while(!found) {
-                int guess = -1;
+            while(found==false) {
+                guess = -1;
                 System.out.println("Enter a number between " + minGuess + " and " + maxGuess);
                 do {
                     try {
@@ -32,13 +27,17 @@ public class Main {
                 if(guess == number) {
                     System.out.println("You found the number !");
                     found = true;
-                } else if(guess < number) {
+                } else {
+                    if(guess < number) {
                     System.out.println("The number is more than " + guess);
                     minGuess = guess;
-                    found = false;
-                } else {
+                    }
+
+                    else {
                     System.out.println("The number is less than " + guess);
                     maxGuess = guess;
+                    }
+                    
                     found = false;
                 }
             }
